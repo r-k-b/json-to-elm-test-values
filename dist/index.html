@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        textarea {
+            min-height: 90vh;
+            min-width: 40vw;
+            field-sizing: content;
+        }
+        .taGrid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 1em;
+        }
+        .taGrid > * {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="elm"></div>
+<script src="Main.js"></script>
+<script>
+    const app = Elm.Main.init({
+        node: document.getElementById('elm'),
+    })
+</script>
+</body>
+</html>
