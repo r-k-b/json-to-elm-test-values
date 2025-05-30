@@ -59,6 +59,7 @@
 
             xdg-open ${built}/index.html
           ''}";
+          meta.description = "Opens the html page for the J2ETV app.";
         };
         packages = { };
       });
