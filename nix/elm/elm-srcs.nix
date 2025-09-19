@@ -21,8 +21,8 @@
   };
 
   "elm/json" = {
-    sha256 = "0kjwrz195z84kwywaxhhlnpl3p251qlbm5iz6byd6jky2crmyqyh";
-    version = "1.1.3";
+    sha256 = "0w1n61m2b9zbwp1yx8zhvir7gqy66mkm22rpq8hmnvgkcwnhxalb";
+    version = "1.1.4";
   };
 
   "json-tools/json-value" = {
