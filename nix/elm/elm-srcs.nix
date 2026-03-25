@@ -16,8 +16,8 @@
   };
 
   "elm/html" = {
-    sha256 = "1n3gpzmpqqdsldys4ipgyl1zacn0kbpc3g4v3hdpiyfjlgh8bf3k";
-    version = "1.0.0";
+    sha256 = "0ljwld3yk682qimkwdsbf4vb3fsv3y2hlisym94i705gx18dz6l8";
+    version = "1.0.1";
   };
 
   "elm/json" = {
