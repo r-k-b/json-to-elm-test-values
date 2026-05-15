@@ -1,26 +1,25 @@
 version: 2
 updates:
-- package-ecosystem: elm
-  directory: "/"
-  schedule:
-    interval: daily
-    time: "19:00"
-  cooldown:
-    default-days: 10
-  open-pull-requests-limit: 10
-#- package-ecosystem: elm
-#  directory: "/review"
-#  schedule:
-#    interval: daily
-#    time: "19:00"
-#  open-pull-requests-limit: 10
-- package-ecosystem: github-actions
-  directories:
-  - "/.github"
-  - "/.github/workflows"
-  schedule:
-    interval: daily
-    time: "19:00"
-  cooldown:
-    default-days: 10
-  open-pull-requests-limit: 10
+  - package-ecosystem: elm
+    directories:
+      - "/"
+      - "/review"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+  - package-ecosystem: github-actions
+    directories:
+      - "/.github"
+      - "/.github/workflows"
+    schedule:
+      interval: daily
+    cooldown:
+      default-days: 10
+    open-pull-requests-limit: 10
+  - package-ecosystem: nix
+    cooldown:
+      default-days: 10
+    directory: "/"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
