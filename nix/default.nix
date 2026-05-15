@@ -4,7 +4,7 @@
 # manually replaced the next two lines:
 # { nixpkgs ? <nixpkgs>, config ? { } }:
 # with (import nixpkgs config);
-{ elmPackages, lib, pkgs, minimalElmSrc, nodePackages, stdenv }:
+{ elmPackages, lib, pkgs, minimalElmSrc, stdenv, uglify-js }:
 let
   mkDerivation = { srcs ? ./elm/elm-srcs.nix, src, name, srcdir ? "../src"
     , targets ? [ ], registryDat ? ./elm/registry.dat, outputJavaScript ? false
@@ -13,7 +13,7 @@ let
       inherit name src;
 
       buildInputs = [ elmPackages.elm ]
-        ++ lib.optional outputJavaScript nodePackages.uglify-js;
+        ++ lib.optional outputJavaScript uglify-js;
 
       buildPhase = pkgs.elmPackages.fetchElmDeps {
         elmPackages = import srcs;
