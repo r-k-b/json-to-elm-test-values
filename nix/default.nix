@@ -30,7 +30,7 @@ let
 
       buildPhase = pkgs.elmPackages.fetchElmDeps {
         elmPackages = import srcs;
-        elmVersion = "0.19.1";
+        elmVersion = "0.19.2";
         inherit registryDat;
       };
 
