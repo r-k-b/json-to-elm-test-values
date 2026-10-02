@@ -1,4 +1,9 @@
-{ elm2nix, minimalElmSrc, pkgs, stdenv }:
+{
+  elm2nix,
+  minimalElmSrc,
+  pkgs,
+  stdenv,
+}:
 stdenv.mkDerivation {
   name = "json-to-elm-test-values";
   src = minimalElmSrc;

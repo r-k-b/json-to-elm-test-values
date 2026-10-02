@@ -1,4 +1,8 @@
-{ minimalElmSrc, pkgs, stdenv }:
+{
+  minimalElmSrc,
+  pkgs,
+  stdenv,
+}:
 stdenv.mkDerivation {
   name = "failIfDepsOutOfSync";
   src = minimalElmSrc;
@@ -8,9 +12,9 @@ stdenv.mkDerivation {
       --sort-keys < ./elm.json > flat-elm-deps.json
 
     jq . --sort-keys < ${
-      pkgs.writeText "elmSrcsNixFlattened.json" (builtins.toJSON
-        (builtins.mapAttrs (k: value: value.version)
-          (import ./elm/elm-srcs.nix)))
+      pkgs.writeText "elmSrcsNixFlattened.json" (
+        builtins.toJSON (builtins.mapAttrs (k: value: value.version) (import ./elm/elm-srcs.nix))
+      )
     } > flat-nix-deps.json
 
     if diff flat-elm-deps.json flat-nix-deps.json; then

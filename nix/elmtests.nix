@@ -1,9 +1,17 @@
-{ elmPackages, pkgs, stdenv, testsSrc }:
+{
+  elmPackages,
+  pkgs,
+  stdenv,
+  testsSrc,
+}:
 stdenv.mkDerivation {
   name = "elm-test-results";
   src = testsSrc;
 
-  buildInputs = with elmPackages; [ elm elm-test ];
+  buildInputs = with elmPackages; [
+    elm
+    elm-test
+  ];
 
   buildPhase = pkgs.elmPackages.fetchElmDeps {
     elmPackages = import ./elm/elm-srcs.nix;
