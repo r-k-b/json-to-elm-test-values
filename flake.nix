@@ -6,15 +6,24 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, flake-utils }:
-    let supportedSystems = with flake-utils.lib.system; [ x86_64-linux ];
-    in flake-utils.lib.eachSystem supportedSystems (system:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+    }:
+    let
+      supportedSystems = with flake-utils.lib.system; [ x86_64-linux ];
+    in
+    flake-utils.lib.eachSystem supportedSystems (
+      system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
         inherit (pkgs) lib stdenv callPackage;
         inherit (lib) fileset hasInfix hasSuffix;
 
-        toSource = fsets:
+        toSource =
+          fsets:
           fileset.toSource {
             root = ./.;
             fileset = fileset.unions fsets;
@@ -29,21 +38,22 @@
           ./nix/elm/registry.dat
         ];
 
-        failIfDepsOutOfSync =
-          callPackage ./nix/failIfDepsOutOfSync.nix { inherit minimalElmSrc; };
+        failIfDepsOutOfSync = callPackage ./nix/failIfDepsOutOfSync.nix { inherit minimalElmSrc; };
 
         elm2nix = callPackage ./nix/default.nix { inherit minimalElmSrc; };
 
         built = callPackage ./nix/built.nix { inherit elm2nix minimalElmSrc; };
 
-        peekSrc = name: src:
+        peekSrc =
+          name: src:
           stdenv.mkDerivation {
             src = src;
             name = "peekSource-${name}";
             buildPhase = "mkdir -p $out";
             installPhase = "cp -r ./* $out";
           };
-      in {
+      in
+      {
         packages = {
           inherit built;
           default = built;
@@ -62,5 +72,6 @@
           meta.description = "Opens the html page for the J2ETV app.";
         };
         packages = { };
-      });
+      }
+    );
 }
